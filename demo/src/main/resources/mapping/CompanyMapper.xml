@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ananopsmaster.eureka.company.demo.mapper.CompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.ananopsmaster.eureka.company.demo.model.Company" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="legal_name" property="legalName" jdbcType="VARCHAR" />
+    <result column="legal_phone" property="legalPhone" jdbcType="VARCHAR" />
+    <result column="legal_id" property="legalId" jdbcType="VARCHAR" />
+    <result column="company_type" property="companyType" jdbcType="VARCHAR" />
+    <result column="main_work" property="mainWork" jdbcType="VARCHAR" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="registered_address" property="registeredAddress" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="zip_code" property="zipCode" jdbcType="VARCHAR" />
+    <result column="contact_name" property="contactName" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="account_name" property="accountName" jdbcType="VARCHAR" />
+    <result column="account_id" property="accountId" jdbcType="VARCHAR" />
+    <result column="license_type" property="licenseType" jdbcType="VARCHAR" />
+    <result column="Registered_captial" property="registeredCaptial" jdbcType="VARCHAR" />
+    <result column="Social_credit_code" property="socialCreditCode" jdbcType="VARCHAR" />
+    <result column="Expiration_date" property="expirationDate" jdbcType="TIMESTAMP" />
+    <result column="Business_scope" property="businessScope" jdbcType="VARCHAR" />
+    <result column="Product_category" property="productCategory" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_name, legal_name, legal_phone, legal_id, company_type, main_work, country, 
+    registered_address, company_address, zip_code, contact_name, contact_phone, account_name, 
+    account_id, license_type, Registered_captial, Social_credit_code, Expiration_date, 
+    Business_scope, Product_category
+  </sql>
+  <select id="getCompanyList" resultMap="BaseResultMap" >
+    select *
+    from company
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from company
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from company
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ananopsmaster.eureka.company.demo.model.Company" >
+    insert into company (id, company_name, legal_name, 
+      legal_phone, legal_id, company_type, 
+      main_work, country, registered_address, 
+      company_address, zip_code, contact_name, 
+      contact_phone, account_name, account_id, 
+      license_type, Registered_captial, Social_credit_code, 
+      Expiration_date, Business_scope, Product_category
+      )
+    values (#{id,jdbcType=BIGINT}, #{companyName,jdbcType=VARCHAR}, #{legalName,jdbcType=VARCHAR}, 
+      #{legalPhone,jdbcType=VARCHAR}, #{legalId,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, 
+      #{mainWork,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{registeredAddress,jdbcType=VARCHAR}, 
+      #{companyAddress,jdbcType=VARCHAR}, #{zipCode,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{accountName,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}, 
+      #{licenseType,jdbcType=VARCHAR}, #{registeredCaptial,jdbcType=VARCHAR}, #{socialCreditCode,jdbcType=VARCHAR}, 
+      #{expirationDate,jdbcType=TIMESTAMP}, #{businessScope,jdbcType=VARCHAR}, #{productCategory,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ananopsmaster.eureka.company.demo.model.Company" >
+    insert into company
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="legalName != null" >
+        legal_name,
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone,
+      </if>
+      <if test="legalId != null" >
+        legal_id,
+      </if>
+      <if test="companyType != null" >
+        company_type,
+      </if>
+      <if test="mainWork != null" >
+        main_work,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="registeredAddress != null" >
+        registered_address,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="zipCode != null" >
+        zip_code,
+      </if>
+      <if test="contactName != null" >
+        contact_name,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="accountName != null" >
+        account_name,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="licenseType != null" >
+        license_type,
+      </if>
+      <if test="registeredCaptial != null" >
+        Registered_captial,
+      </if>
+      <if test="socialCreditCode != null" >
+        Social_credit_code,
+      </if>
+      <if test="expirationDate != null" >
+        Expiration_date,
+      </if>
+      <if test="businessScope != null" >
+        Business_scope,
+      </if>
+      <if test="productCategory != null" >
+        Product_category,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null" >
+        #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalId != null" >
+        #{legalId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainWork != null" >
+        #{mainWork,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredAddress != null" >
+        #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseType != null" >
+        #{licenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCaptial != null" >
+        #{registeredCaptial,jdbcType=VARCHAR},
+      </if>
+      <if test="socialCreditCode != null" >
+        #{socialCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null" >
+        #{expirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null" >
+        #{productCategory,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ananopsmaster.eureka.company.demo.model.Company" >
+    update company
+    <set >
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalName != null" >
+        legal_name = #{legalName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPhone != null" >
+        legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="legalId != null" >
+        legal_id = #{legalId,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        company_type = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="mainWork != null" >
+        main_work = #{mainWork,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredAddress != null" >
+        registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="zipCode != null" >
+        zip_code = #{zipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        contact_name = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null" >
+        account_name = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseType != null" >
+        license_type = #{licenseType,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCaptial != null" >
+        Registered_captial = #{registeredCaptial,jdbcType=VARCHAR},
+      </if>
+      <if test="socialCreditCode != null" >
+        Social_credit_code = #{socialCreditCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expirationDate != null" >
+        Expiration_date = #{expirationDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="businessScope != null" >
+        Business_scope = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null" >
+        Product_category = #{productCategory,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ananopsmaster.eureka.company.demo.model.Company" >
+    update company
+    set company_name = #{companyName,jdbcType=VARCHAR},
+      legal_name = #{legalName,jdbcType=VARCHAR},
+      legal_phone = #{legalPhone,jdbcType=VARCHAR},
+      legal_id = #{legalId,jdbcType=VARCHAR},
+      company_type = #{companyType,jdbcType=VARCHAR},
+      main_work = #{mainWork,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      registered_address = #{registeredAddress,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      zip_code = #{zipCode,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      account_name = #{accountName,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR},
+      license_type = #{licenseType,jdbcType=VARCHAR},
+      Registered_captial = #{registeredCaptial,jdbcType=VARCHAR},
+      Social_credit_code = #{socialCreditCode,jdbcType=VARCHAR},
+      Expiration_date = #{expirationDate,jdbcType=TIMESTAMP},
+      Business_scope = #{businessScope,jdbcType=VARCHAR},
+      Product_category = #{productCategory,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
